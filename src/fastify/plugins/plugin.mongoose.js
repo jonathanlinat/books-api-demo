@@ -8,13 +8,13 @@ const plugin = fp(async (fastify, opts) => {
     mongoose.connection.on('connected', () =>
       fastify.log.info(
         { actor: 'MongoDB' },
-        'Successfully connected to database'
+        `Successfully connected to database "${process.env.MONGO_DATABASE_NAME}"`
       )
     )
     mongoose.connection.on('disconnected', () =>
       fastify.log.error(
         { actor: 'MongoDB' },
-        'Successfully disconnected from database'
+        `Successfully disconnected to database "${process.env.MONGO_DATABASE_NAME}"`
       )
     )
 

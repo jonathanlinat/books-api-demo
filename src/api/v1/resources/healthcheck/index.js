@@ -1,7 +1,7 @@
 'use strict'
 
-const resourceSchemas = require('./resource.schemas.js')
-const resourceControllers = require('./resource.controllers.js')
+const resourceSchemas = require('./resource.schemas')
+const resourceControllers = require('./resource.controllers')
 
 module.exports = (fastify, opts, done) => {
   const schemas = resourceSchemas(opts)

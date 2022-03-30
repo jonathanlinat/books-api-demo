@@ -1,6 +1,6 @@
 'use strict'
 
-const resourceModel = require('./resource.model.js')
+const resourceModel = require('./resource.model')
 
 module.exports = (fastify, opts) => {
   const model = resourceModel(fastify, opts)

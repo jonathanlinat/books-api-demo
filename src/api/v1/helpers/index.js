@@ -1,3 +1,5 @@
+'use strict'
+
 module.exports = {
   routePrefixSplitter: (string) => string.split('/').pop(),
   swaggerTagNameNormalizer: (string) =>

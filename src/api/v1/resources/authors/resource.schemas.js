@@ -15,13 +15,14 @@ module.exports = (opts) => {
   const commonEntityProperties = {
     _id: { type: 'string' },
     created_at: { type: 'string' },
-    deleted_at: { type: 'string', default: null },
     updated_at: { type: 'string' }
   }
   const specificEntityProperties = {
     firstname: { type: 'string' },
     lastname: { type: 'string' },
-    birthday: { type: 'string', default: null }
+    birthday: { type: 'string', default: null },
+    deleted_at: { type: 'string', default: null },
+    published_at: { type: 'string', default: null }
   }
   const requiredSpecificEntityProperties = ['firstname', 'lastname']
 

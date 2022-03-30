@@ -9,7 +9,7 @@
     "lint:fix": "eslint src/ --fix",
     "dev": "fastify start -w -l info -P src/",
     "start": "fastify start -l info src/",
-    "seed": "node src/database/seeder.js"
+    "seed": "export MONGO_COLLECTION_NAMES='[\"authors\"]' && node src/seeder/"
   },
   "dependencies": {
     "fastify": "3.27.4",
@@ -18,11 +18,11 @@
     "fastify-cors": "6.0.3",
     "fastify-plugin": "3.0.1",
     "fastify-rate-limit": "5.8.0",
-    "fastify-swagger": "5.0.0",
-    "mongoose": "6.2.8"
+    "fastify-swagger": "5.1.0",
+    "mongoose": "6.2.9"
   },
   "devDependencies": {
-    "@faker-js/faker": "6.0.0",
+    "@faker-js/faker": "6.1.1",
     "dotenv": "16.0.0",
     "eslint": "7.28.0",
     "eslint-config-prettier": "8.5.0",
@@ -31,8 +31,8 @@
     "eslint-plugin-import": "2.25.4",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "4.0.0",
-    "eslint-plugin-promise": "4.2.1",
-    "prettier": "2.6.0",
+    "eslint-plugin-promise": "5.2.0",
+    "prettier": "2.6.1",
     "prettier-config-standard": "5.0.0"
   }
 }

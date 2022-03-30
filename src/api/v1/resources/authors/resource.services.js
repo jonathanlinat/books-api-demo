@@ -1,6 +1,6 @@
 'use strict'
 
-const resourceResolvers = require('./resource.resolvers.js')
+const resourceResolvers = require('./resource.resolvers')
 
 module.exports = (fastify, opts) => {
   const resolvers = resourceResolvers(fastify, opts)

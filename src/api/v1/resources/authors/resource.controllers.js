@@ -2,7 +2,7 @@
 
 const helpers = require('../../helpers')
 
-const resourceServices = require('./resource.services.js')
+const resourceServices = require('./resource.services')
 
 module.exports = (fastify, opts) => {
   const services = resourceServices(fastify, opts)

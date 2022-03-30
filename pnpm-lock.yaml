@@ -1,7 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@faker-js/faker': 6.0.0
+  '@faker-js/faker': 6.1.1
   dotenv: 16.0.0
   eslint: 7.28.0
   eslint-config-prettier: 8.5.0
@@ -10,16 +10,16 @@ specifiers:
   eslint-plugin-import: 2.25.4
   eslint-plugin-node: 11.1.0
   eslint-plugin-prettier: 4.0.0
-  eslint-plugin-promise: 4.2.1
+  eslint-plugin-promise: 5.2.0
   fastify: 3.27.4
   fastify-autoload: 3.11.0
   fastify-cli: 2.15.0
   fastify-cors: 6.0.3
   fastify-plugin: 3.0.1
   fastify-rate-limit: 5.8.0
-  fastify-swagger: 5.0.0
-  mongoose: 6.2.8
-  prettier: 2.6.0
+  fastify-swagger: 5.1.0
+  mongoose: 6.2.9
+  prettier: 2.6.1
   prettier-config-standard: 5.0.0
 
 dependencies:
@@ -29,22 +29,22 @@ dependencies:
   fastify-cors: 6.0.3
   fastify-plugin: 3.0.1
   fastify-rate-limit: 5.8.0
-  fastify-swagger: 5.0.0
-  mongoose: 6.2.8
+  fastify-swagger: 5.1.0
+  mongoose: 6.2.9
 
 devDependencies:
-  '@faker-js/faker': 6.0.0
+  '@faker-js/faker': 6.1.1
   dotenv: 16.0.0
   eslint: 7.28.0
   eslint-config-prettier: 8.5.0_eslint@7.28.0
   eslint-config-prettier-standard: 4.0.1_0613aceecf1031226e8d000e237a257e
-  eslint-config-standard: 16.0.3_41268902f84f2e3d205b17f10f07de43
+  eslint-config-standard: 16.0.3_f1790d1bc94b7694e925a97ee87ea110
   eslint-plugin-import: 2.25.4_eslint@7.28.0
   eslint-plugin-node: 11.1.0_eslint@7.28.0
-  eslint-plugin-prettier: 4.0.0_43b0f69d330b4f12b1f634c1d1921857
-  eslint-plugin-promise: 4.2.1
-  prettier: 2.6.0
-  prettier-config-standard: 5.0.0_prettier@2.6.0
+  eslint-plugin-prettier: 4.0.0_ab4efc3314d9db2cb85abf20c73cba58
+  eslint-plugin-promise: 5.2.0_eslint@7.28.0
+  prettier: 2.6.1
+  prettier-config-standard: 5.0.0_prettier@2.6.1
 
 packages:
 
@@ -85,8 +85,8 @@ packages:
       - supports-color
     dev: true
 
-  /@faker-js/faker/6.0.0:
-    resolution: {integrity: sha512-10zLCKhp3YEmBuko71ivcMoIZcCLXgQVck6aNswX+AWwaek/L8S3yz9i8m3tHigRkcF6F2vI+qtdtyySHK+bGA==}
+  /@faker-js/faker/6.1.1:
+    resolution: {integrity: sha512-8yq1LJVGn4GY06riLddIU1LbJm15yjt46hjfkpWNpH/mqdciPOBVzicKOJxzQNrGgVHVBxcdm7sgwjI/Y19MYw==}
     engines: {node: '>=14.0.0', npm: '>=7.0.0'}
     dev: true
 
@@ -668,9 +668,9 @@ packages:
       prettier-config-standard: '>=1.0.0'
     dependencies:
       eslint-config-prettier: 8.5.0_eslint@7.28.0
-      eslint-config-standard: 16.0.3_41268902f84f2e3d205b17f10f07de43
-      eslint-plugin-prettier: 4.0.0_43b0f69d330b4f12b1f634c1d1921857
-      prettier-config-standard: 5.0.0_prettier@2.6.0
+      eslint-config-standard: 16.0.3_f1790d1bc94b7694e925a97ee87ea110
+      eslint-plugin-prettier: 4.0.0_ab4efc3314d9db2cb85abf20c73cba58
+      prettier-config-standard: 5.0.0_prettier@2.6.1
     dev: true
 
   /eslint-config-prettier/8.5.0_eslint@7.28.0:
@@ -682,7 +682,7 @@ packages:
       eslint: 7.28.0
     dev: true
 
-  /eslint-config-standard/16.0.3_41268902f84f2e3d205b17f10f07de43:
+  /eslint-config-standard/16.0.3_f1790d1bc94b7694e925a97ee87ea110:
     resolution: {integrity: sha512-x4fmJL5hGqNJKGHSjnLdgA6U6h1YW/G2dW9fA+cyVur4SK6lyue8+UgNKWlZtUDTXvgKDD/Oa3GQjmB5kjtVvg==}
     peerDependencies:
       eslint: ^7.12.1
@@ -693,7 +693,7 @@ packages:
       eslint: 7.28.0
       eslint-plugin-import: 2.25.4_eslint@7.28.0
       eslint-plugin-node: 11.1.0_eslint@7.28.0
-      eslint-plugin-promise: 4.2.1
+      eslint-plugin-promise: 5.2.0_eslint@7.28.0
     dev: true
 
   /eslint-import-resolver-node/0.3.6:
@@ -759,7 +759,7 @@ packages:
       semver: 6.3.0
     dev: true
 
-  /eslint-plugin-prettier/4.0.0_43b0f69d330b4f12b1f634c1d1921857:
+  /eslint-plugin-prettier/4.0.0_ab4efc3314d9db2cb85abf20c73cba58:
     resolution: {integrity: sha512-98MqmCJ7vJodoQK359bqQWaxOE0CS8paAz/GgjaZLyex4TTk3g9HugoO89EqWCrFiOqn9EVvcoo7gZzONCWVwQ==}
     engines: {node: '>=6.0.0'}
     peerDependencies:
@@ -772,13 +772,17 @@ packages:
     dependencies:
       eslint: 7.28.0
       eslint-config-prettier: 8.5.0_eslint@7.28.0
-      prettier: 2.6.0
+      prettier: 2.6.1
       prettier-linter-helpers: 1.0.0
     dev: true
 
-  /eslint-plugin-promise/4.2.1:
-    resolution: {integrity: sha512-VoM09vT7bfA7D+upt+FjeBO5eHIJQBUWki1aPvB+vbNiHS3+oGIJGIeyBtKQTME6UPXXy3vV07OL1tHd3ANuDw==}
-    engines: {node: '>=6'}
+  /eslint-plugin-promise/5.2.0_eslint@7.28.0:
+    resolution: {integrity: sha512-SftLb1pUG01QYq2A/hGAWfDRXqYD82zE7j7TopDOyNdU+7SvvoXREls/+PRTY17vUXzXnZA/zfnyKgRH6x4JJw==}
+    engines: {node: ^10.12.0 || >=12.0.0}
+    peerDependencies:
+      eslint: ^7.0.0
+    dependencies:
+      eslint: 7.28.0
     dev: true
 
   /eslint-scope/5.1.1:
@@ -1019,8 +1023,8 @@ packages:
       send: 0.17.2
     dev: false
 
-  /fastify-swagger/5.0.0:
-    resolution: {integrity: sha512-JdOn5CNKLhVPHDHTEpkmUaWNN/Y51R97TlSOICWT1WB41ZO6oiq9eUZIg0fLJABU6QsrcsiUxUkBBuuEL/g8Vw==}
+  /fastify-swagger/5.1.0:
+    resolution: {integrity: sha512-blV4vhuGXrFXo7+yR287D0v4gSxicgOQzfMTWS9nbjA2wIaf+/sxHEmaLUphnKilj3siURb9Bx69gy1eomv8Ng==}
     dependencies:
       fastify-plugin: 3.0.1
       fastify-static: 4.6.1
@@ -1478,8 +1482,8 @@ packages:
       minimist: 1.2.5
     dev: true
 
-  /kareem/2.3.4:
-    resolution: {integrity: sha512-Vcrt8lcpVl0s8ePx634BxwRqmFo+5DcOhlmNadehxreMTIQi/9hOL/B3hZQQbK5DgMS7Lem3xABXV7/S3jy+7g==}
+  /kareem/2.3.5:
+    resolution: {integrity: sha512-qxCyQtp3ioawkiRNQr/v8xw9KIviMSSNmy+63Wubj7KmMn3g7noRXIZB4vPCAP+ETi2SR8eH6CvmlKZuGpoHOg==}
     dev: false
 
   /leven/3.1.0:
@@ -1625,12 +1629,12 @@ packages:
       saslprep: 1.0.3
     dev: false
 
-  /mongoose/6.2.8:
-    resolution: {integrity: sha512-Wq6HG0sOJEQHp5YqMlxrnf93vBFwdY2zlAwqI97EPPSt69kiVV21pTv4cDanrCNWi4upG8ajQ/p9jpDjcECjkQ==}
+  /mongoose/6.2.9:
+    resolution: {integrity: sha512-6ApgF3rKYah5pUEO/1H+QrT0GT05OR7FprtVM45yzcrT/IKKlXizPyttrMiK1mLPt+55pGU7PMsBWY7yx/xZ4g==}
     engines: {node: '>=12.0.0'}
     dependencies:
       bson: 4.6.1
-      kareem: 2.3.4
+      kareem: 2.3.5
       mongodb: 4.3.1
       mpath: 0.8.4
       mquery: 4.0.2
@@ -1893,12 +1897,12 @@ packages:
     resolution: {integrity: sha1-mUsCqkb2mcULYle1+qp/4lV+YtY=}
     dev: false
 
-  /prettier-config-standard/5.0.0_prettier@2.6.0:
+  /prettier-config-standard/5.0.0_prettier@2.6.1:
     resolution: {integrity: sha512-QK252QwCxlsak8Zx+rPKZU31UdbRcu9iUk9X1ONYtLSO221OgvV9TlKoTf6iPDZtvF3vE2mkgzFIEgSUcGELSQ==}
     peerDependencies:
       prettier: ^2.4.0
     dependencies:
-      prettier: 2.6.0
+      prettier: 2.6.1
     dev: true
 
   /prettier-linter-helpers/1.0.0:
@@ -1908,8 +1912,8 @@ packages:
       fast-diff: 1.2.0
     dev: true
 
-  /prettier/2.6.0:
-    resolution: {integrity: sha512-m2FgJibYrBGGgQXNzfd0PuDGShJgRavjUoRCw1mZERIWVSXF0iLzLm+aOqTAbLnC3n6JzUhAA8uZnFVghHJ86A==}
+  /prettier/2.6.1:
+    resolution: {integrity: sha512-8UVbTBYGwN37Bs9LERmxCPjdvPxlEowx2urIL6urHzdb3SDq4B/Z6xLFCblrSnE4iKWcS6ziJ3aOYrc1kz/E2A==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true
