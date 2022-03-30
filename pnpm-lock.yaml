@@ -21,6 +21,7 @@ specifiers:
   mongoose: 6.2.9
   prettier: 2.6.1
   prettier-config-standard: 5.0.0
+  simple-git-hooks: 2.7.0
   tap: 16.0.1
 
 dependencies:
@@ -46,6 +47,7 @@ devDependencies:
   eslint-plugin-promise: 5.2.0_eslint@7.28.0
   prettier: 2.6.1
   prettier-config-standard: 5.0.0_prettier@2.6.1
+  simple-git-hooks: 2.7.0
   tap: 16.0.1
 
 packages:
@@ -2846,6 +2848,12 @@ packages:
 
   /signal-exit/3.0.7:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
+    dev: true
+
+  /simple-git-hooks/2.7.0:
+    resolution: {integrity: sha512-nQe6ASMO9zn5/htIrU37xEIHGr9E6wikXelLbOeTcfsX2O++DHaVug7RSQoq+kO7DvZTH37WA5gW49hN9HTDmQ==}
+    hasBin: true
+    requiresBuild: true
     dev: true
 
   /slice-ansi/4.0.0:
