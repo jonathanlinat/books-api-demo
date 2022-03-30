@@ -1,14 +1,14 @@
 {
-  "name": "books-api",
+  "name": "books-api-demo",
   "description": "This project was bootstrapped with Fastify-CLI.",
   "author": "Jonathan Linat <jonathan.linat@gmail.com>",
   "version": "1.0.0",
   "license": "CC0",
   "scripts": {
+    "dev": "fastify start -w -l info -P src/",
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix",
     "seed": "export MONGO_COLLECTION_NAMES='[\"authors\"]' && node src/seeder/",
-    "dev": "fastify start -w -l info -P src/",
     "start": "fastify start -l info src/",
     "test": "tap \"src/**/*.test.js\""
   },
@@ -35,6 +35,10 @@
     "eslint-plugin-promise": "5.2.0",
     "prettier": "2.6.1",
     "prettier-config-standard": "5.0.0",
+    "simple-git-hooks": "2.7.0",
     "tap": "16.0.1"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm dlx lint-staged"
   }
 }
