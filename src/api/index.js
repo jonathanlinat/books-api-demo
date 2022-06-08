@@ -2,7 +2,7 @@
 
 const path = require('path')
 
-const autoload = require('fastify-autoload')
+const autoload = require('@fastify/autoload')
 
 module.exports = async (fastify, opts) => {
   const registersToBeAutoloaded = ['resources']

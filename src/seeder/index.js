@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 
 const seeds = require('./seeds')
 
-!(async () => {
+;(async () => {
   dotenv.config()
 
   const logger = (type, message) => {
@@ -33,7 +33,7 @@ const seeds = require('./seeds')
       )
     )
 
-    const client = await mongoose.connect(databaseFullUri, {
+    const client = mongoose.connect(databaseFullUri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       config: {
