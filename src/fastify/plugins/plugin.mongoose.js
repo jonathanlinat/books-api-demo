@@ -14,11 +14,11 @@ const plugin = fp(async (fastify, opts) => {
     mongoose.connection.on('disconnected', () =>
       fastify.log.error(
         { actor: 'MongoDB' },
-        `Successfully disconnected to database "${process.env.MONGO_DATABASE_NAME}"`
+        `Successfully disconnected from database "${process.env.MONGO_DATABASE_NAME}"`
       )
     )
 
-    await mongoose.connect(opts.url, opts.settings)
+    mongoose.connect(opts.url, opts.settings)
 
     fastify.addHook('onClose', (instance, done) => {
       instance.mongoose.connection.on('close', () => done())

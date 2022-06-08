@@ -14,7 +14,7 @@ module.exports = (fastify, opts) => {
 
     return {
       processed_at: date,
-      description: description
+      description
     }
   }
 

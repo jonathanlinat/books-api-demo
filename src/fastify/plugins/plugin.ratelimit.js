@@ -1,7 +1,7 @@
 'use strict'
 
 const fp = require('fastify-plugin')
-const ratelimit = require('fastify-rate-limit')
+const ratelimit = require('@fastify/rate-limit')
 
 module.exports = fp(async (fastify, opts, next) => {
   await fastify.register(ratelimit, {

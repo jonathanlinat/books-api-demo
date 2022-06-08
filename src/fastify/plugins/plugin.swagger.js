@@ -1,7 +1,7 @@
 'use strict'
 
 const fp = require('fastify-plugin')
-const swagger = require('fastify-swagger')
+const swagger = require('@fastify/swagger')
 
 module.exports = fp(async (fastify, opts, next) => {
   await fastify.register(swagger, {
