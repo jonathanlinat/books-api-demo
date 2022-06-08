@@ -3,7 +3,7 @@
   "description": "This project was bootstrapped with Fastify-CLI.",
   "author": "Jonathan Linat <jonathan.linat@gmail.com>",
   "version": "1.0.0",
-  "license": "CC0",
+  "license": "UNLICENSED",
   "scripts": {
     "dev": "fastify start -w -l info -P src/",
     "lint": "eslint src/",
