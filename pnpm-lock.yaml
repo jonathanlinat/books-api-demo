@@ -6,6 +6,7 @@ specifiers:
   '@faker-js/faker': 7.2.0
   '@fastify/autoload': 5.0.0
   '@fastify/cors': 8.0.0
+  '@fastify/helmet': 9.1.0
   '@fastify/rate-limit': 7.0.0
   '@fastify/static': 6.4.0
   '@fastify/swagger': 7.3.0
@@ -31,6 +32,7 @@ specifiers:
 dependencies:
   '@fastify/autoload': 5.0.0
   '@fastify/cors': 8.0.0
+  '@fastify/helmet': 9.1.0
   '@fastify/rate-limit': 7.0.0
   '@fastify/static': 6.4.0
   '@fastify/swagger': 7.3.0
@@ -473,6 +475,13 @@ packages:
     resolution: {integrity: sha512-X9BL9/N7827M9UTBVsa5G3xOoD3MQ6EqX+D6EyJyF8LdvWTHQJ//BDN4FAEaGZUA2sL+GEMC6+KNjHESnPwQuw==}
     dependencies:
       fast-json-stringify: 4.2.0
+    dev: false
+
+  /@fastify/helmet/9.1.0:
+    resolution: {integrity: sha512-wAtu/38t90vH46GdLM6pVi8tM1HZXb6PRdLTNBo9pudSfSw5i5Ogm8Hq1Nx337WjgSOeU6MefaTd+1avlOlCDQ==}
+    dependencies:
+      fastify-plugin: 3.0.1
+      helmet: 5.1.0
     dev: false
 
   /@fastify/rate-limit/7.0.0:
@@ -2141,6 +2150,11 @@ packages:
       is-stream: 2.0.1
       type-fest: 0.8.1
     dev: true
+
+  /helmet/5.1.0:
+    resolution: {integrity: sha512-klsunXs8rgNSZoaUrNeuCiWUxyc+wzucnEnFejUg3/A+CaF589k9qepLZZ1Jehnzig7YbD4hEuscGXuBY3fq+g==}
+    engines: {node: '>=12.0.0'}
+    dev: false
 
   /help-me/2.0.1:
     resolution: {integrity: sha512-M0zuH7YG7t6xeLDllblPQkBfuI4MVz1teOJ+JCKBAiOzVXy3FmseeQ87Zt50fM1hTX9627iO/P1oWEwvykGlPQ==}
