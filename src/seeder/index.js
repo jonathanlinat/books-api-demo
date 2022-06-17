@@ -33,7 +33,7 @@ const seeds = require('./seeds')
       )
     )
 
-    const client = mongoose.connect(databaseFullUri, {
+    const client = await mongoose.connect(databaseFullUri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       config: {
@@ -65,7 +65,7 @@ const seeds = require('./seeds')
 
     await client.disconnect()
   } catch (error) {
-    logger('error', error.stack)
+    logger('error', error)
 
     process.exit(-1)
   }

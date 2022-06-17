@@ -10,7 +10,12 @@ module.exports = async (fastify, opts) => {
   registersToBeAutoloaded.forEach((register) => {
     fastify.register(autoload, {
       dir: path.join(__dirname, `${process.env.API_VERSION}/${register}`),
-      options: Object.assign({}, opts)
+      options: Object.assign(
+        {
+          prefix: `api/${process.env.API_VERSION}/`
+        },
+        opts
+      )
     })
   })
 }
