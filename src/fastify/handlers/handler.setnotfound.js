@@ -10,5 +10,7 @@ module.exports = async (fastify, opts) => {
         description: 'Route not found'
       }
     })
+
+    return reply
   })
 }

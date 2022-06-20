@@ -21,6 +21,8 @@ module.exports = (fastify, opts) => {
           ...commonApiProperties('Great! API is reachable 😎')
         }
       })
+
+      return reply
     }
   }
 }

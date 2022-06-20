@@ -45,6 +45,8 @@ module.exports = (fastify, opts) => {
           }
         })
       }
+
+      return reply
     },
     get: async (request, reply) => {
       try {
@@ -75,6 +77,8 @@ module.exports = (fastify, opts) => {
           }
         })
       }
+
+      return reply
     },
     create: async (request, reply) => {
       try {
@@ -103,6 +107,8 @@ module.exports = (fastify, opts) => {
           }
         })
       }
+
+      return reply
     },
     update: async (request, reply) => {
       try {
@@ -134,6 +140,8 @@ module.exports = (fastify, opts) => {
           }
         })
       }
+
+      return reply
     },
     delete: async (request, reply) => {
       try {
@@ -164,6 +172,8 @@ module.exports = (fastify, opts) => {
           }
         })
       }
+
+      return reply
     }
   }
 }
