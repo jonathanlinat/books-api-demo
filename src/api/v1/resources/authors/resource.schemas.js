@@ -18,11 +18,11 @@ module.exports = (opts) => {
     updated_at: { type: 'string' }
   }
   const specificEntityProperties = {
+    deleted_at: { type: 'string', default: null },
+    published_at: { type: 'string', default: null },
     firstname: { type: 'string' },
     lastname: { type: 'string' },
-    birthday: { type: 'string', default: null },
-    deleted_at: { type: 'string', default: null },
-    published_at: { type: 'string', default: null }
+    birthday: { type: 'string', default: null }
   }
   const requiredSpecificEntityProperties = ['firstname', 'lastname']
 

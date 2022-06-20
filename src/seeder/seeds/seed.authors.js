@@ -11,11 +11,11 @@ module.exports = (totalAmountOfEntities) => {
     const date = () => (faker.datatype.boolean() ? null : faker.date.past())
 
     entities.push({
+      deleted_at: date(),
+      published_at: date(),
       firstname,
       lastname,
-      birthday: date(),
-      deleted_at: date(),
-      published_at: date()
+      birthday: date()
     })
   }
 
