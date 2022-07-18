@@ -3,13 +3,13 @@
 const fp = require('fastify-plugin')
 const swagger = require('@fastify/swagger')
 
-module.exports = fp(async (fastify, opts, next) => {
+module.exports = fp(async (fastify, opts) => {
   await fastify.register(swagger, {
     routePrefix: `api/documentation`,
     exposeRoute: true,
     hideUntagged: true,
     swagger: {
-      info: { title: 'Books API', version: '1.0.0' },
+      info: { title: 'Books API', version: process.env.API_VERSION },
       tags: [
         { name: 'Authors', description: 'Authors related end-points' },
         { name: 'Healthcheck', description: 'API related end-points' }
@@ -18,6 +18,4 @@ module.exports = fp(async (fastify, opts, next) => {
       produces: ['application/json']
     }
   })
-
-  next()
 })

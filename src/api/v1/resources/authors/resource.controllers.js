@@ -2,6 +2,7 @@
 
 const helpers = require('../../helpers')
 
+const resourceProperties = require('./resource.properties')
 const resourceServices = require('./resource.services')
 
 module.exports = (fastify, opts) => {
@@ -9,76 +10,78 @@ module.exports = (fastify, opts) => {
 
   const resourceName = helpers.routePrefixSplitter(opts.prefix)
 
-  const commonApiProperties = (description) => {
-    const date = new Date(Date.now())
-
-    return {
-      processed_at: date,
-      description
-    }
-  }
-
   return {
     list: async (request, reply) => {
       try {
         const response = await services.list()
 
         if (response.message === 'NOT_FOUND') {
-          reply.code(404).send({
+          return reply.code(404).send({
             [resourceName]: {
-              ...commonApiProperties('Entities not found'),
-              data: response.data
-            }
-          })
-        } else if (response.message === 'OK') {
-          reply.code(200).send({
-            [resourceName]: {
-              ...commonApiProperties('Entities successfully found'),
+              ...resourceProperties().controllers.api('Entities not found'),
               data: response.data
             }
           })
         }
-      } catch (error) {
-        reply.code(500).send({
+
+        return reply.code(200).send({
           [resourceName]: {
-            ...commonApiProperties(error.message)
+            ...resourceProperties().controllers.api(
+              'Entities successfully found'
+            ),
+            data: response.data
+          }
+        })
+      } catch (error) {
+        return reply.code(500).send({
+          [resourceName]: {
+            ...resourceProperties().controllers.api(error.message)
           }
         })
       }
-
-      return reply
     },
     get: async (request, reply) => {
       try {
         const {
           params: { id }
         } = request
+
+        const isObjectIdValid = helpers.checkObjectIdValidity(id)
+
+        if (isObjectIdValid) {
+          return reply.code(422).send({
+            [resourceName]: {
+              ...resourceProperties().controllers.api('Provided ID not valid')
+            }
+          })
+        }
+
         const response = await services.get(id)
 
         if (response.message === 'NOT_FOUND') {
-          reply.code(404).send({
+          return reply.code(404).send({
             [resourceName]: {
-              ...commonApiProperties('Entity not found'),
-              data: response.data
-            }
-          })
-        } else if (response.message === 'OK') {
-          reply.code(200).send({
-            [resourceName]: {
-              ...commonApiProperties('Entity successfully found'),
+              ...resourceProperties().controllers.api('Entity not found'),
               data: response.data
             }
           })
         }
-      } catch (error) {
-        reply.code(500).send({
+
+        return reply.code(200).send({
           [resourceName]: {
-            ...commonApiProperties(error.message)
+            ...resourceProperties().controllers.api(
+              'Entity successfully found'
+            ),
+            data: response.data
+          }
+        })
+      } catch (error) {
+        return reply.code(500).send({
+          [resourceName]: {
+            ...resourceProperties().controllers.api(error.message)
           }
         })
       }
-
-      return reply
     },
     create: async (request, reply) => {
       try {
@@ -86,29 +89,29 @@ module.exports = (fastify, opts) => {
         const response = await services.create(body)
 
         if (response.message === 'NOT_FOUND') {
-          reply.code(404).send({
+          return reply.code(404).send({
             [resourceName]: {
-              ...commonApiProperties('Entity not found'),
-              data: response.data
-            }
-          })
-        } else if (response.message === 'OK') {
-          reply.code(201).send({
-            [resourceName]: {
-              ...commonApiProperties('Entity successfully created'),
+              ...resourceProperties().controllers.api('Entity not found'),
               data: response.data
             }
           })
         }
-      } catch (error) {
-        reply.code(500).send({
+
+        return reply.code(201).send({
           [resourceName]: {
-            ...commonApiProperties(error.message)
+            ...resourceProperties().controllers.api(
+              'Entity successfully created'
+            ),
+            data: response.data
+          }
+        })
+      } catch (error) {
+        return reply.code(500).send({
+          [resourceName]: {
+            ...resourceProperties().controllers.api(error.message)
           }
         })
       }
-
-      return reply
     },
     update: async (request, reply) => {
       try {
@@ -116,64 +119,86 @@ module.exports = (fastify, opts) => {
           params: { id },
           body
         } = request
+
+        const isObjectIdValid = helpers.checkObjectIdValidity(id)
+
+        if (isObjectIdValid) {
+          return reply.code(422).send({
+            [resourceName]: {
+              ...resourceProperties().controllers.api('Provided ID not valid')
+            }
+          })
+        }
+
         const response = await services.update(id, body)
 
         if (response.message === 'NOT_FOUND') {
-          reply.code(404).send({
+          return reply.code(404).send({
             [resourceName]: {
-              ...commonApiProperties('Entity not found'),
-              data: response.data
-            }
-          })
-        } else if (response.message === 'OK') {
-          reply.code(200).send({
-            [resourceName]: {
-              ...commonApiProperties('Entity successfully updated'),
+              ...resourceProperties().controllers.api('Entity not found'),
               data: response.data
             }
           })
         }
-      } catch (error) {
-        reply.code(500).send({
+
+        return reply.code(200).send({
           [resourceName]: {
-            ...commonApiProperties(error.message)
+            ...resourceProperties().controllers.api(
+              'Entity successfully updated'
+            ),
+            data: response.data
+          }
+        })
+      } catch (error) {
+        return reply.code(500).send({
+          [resourceName]: {
+            ...resourceProperties().controllers.api(error.message)
           }
         })
       }
-
-      return reply
     },
     delete: async (request, reply) => {
       try {
         const {
           params: { id }
         } = request
+
+        const isObjectIdValid = helpers.checkObjectIdValidity(id)
+
+        if (isObjectIdValid) {
+          return reply.code(422).send({
+            [resourceName]: {
+              ...resourceProperties().controllers.api('Provided ID not valid')
+            }
+          })
+        }
+
         const response = await services.delete(id)
 
         if (response.message === 'NOT_FOUND') {
-          reply.code(404).send({
+          return reply.code(404).send({
             [resourceName]: {
-              ...commonApiProperties('Entity not found'),
-              data: response.data
-            }
-          })
-        } else if (response.message === 'OK') {
-          reply.code(200).send({
-            [resourceName]: {
-              ...commonApiProperties('Entity successfully deleted'),
+              ...resourceProperties().controllers.api('Entity not found'),
               data: response.data
             }
           })
         }
-      } catch (error) {
-        reply.code(500).send({
+
+        return reply.code(200).send({
           [resourceName]: {
-            ...commonApiProperties(error.message)
+            ...resourceProperties().controllers.api(
+              'Entity successfully deleted'
+            ),
+            data: response.data
+          }
+        })
+      } catch (error) {
+        return reply.code(500).send({
+          [resourceName]: {
+            ...resourceProperties().controllers.api(error.message)
           }
         })
       }
-
-      return reply
     }
   }
 }

@@ -10,7 +10,7 @@ module.exports = (opts) => {
 
   const commonApiProperties = {
     processed_at: { type: 'string' },
-    description: { type: 'string' }
+    message: { type: 'string' }
   }
 
   return {
@@ -20,7 +20,7 @@ module.exports = (opts) => {
         summary: 'Check if API is reachable',
         response: {
           200: {
-            description: 'API successfully reached',
+            message: 'API successfully reached',
             type: 'object',
             properties: {
               [resourceName]: {

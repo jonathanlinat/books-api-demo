@@ -4,13 +4,11 @@ module.exports = async (fastify, opts) => {
   fastify.setNotFoundHandler((request, reply) => {
     const date = new Date(Date.now())
 
-    reply.send({
+    return reply.code(404).send({
       api: {
         processed_at: date,
-        description: 'Route not found'
+        message: 'Route not found'
       }
     })
-
-    return reply
   })
 }

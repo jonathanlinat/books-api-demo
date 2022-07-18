@@ -1,6 +1,8 @@
 'use strict'
 
 const dotenv = require('dotenv')
+const yesno = require('yesno')
+const pino = require('pino')
 const mongoose = require('mongoose')
 
 const seeds = require('./seeds')
@@ -8,9 +10,14 @@ const seeds = require('./seeds')
 ;(async () => {
   dotenv.config()
 
-  const logger = (type, message) => {
-    console[type](`[${new Date(Date.now()).toISOString()}] ${message}`)
-  }
+  const logger = pino({
+    transport: {
+      target: 'pino-pretty',
+      options: {
+        colorize: true
+      }
+    }
+  })
 
   const randomizer = (min, max) =>
     Math.floor(Math.random() * (max - min + 1) + min)
@@ -19,18 +26,24 @@ const seeds = require('./seeds')
   const databaseName = process.env.MONGO_DATABASE_NAME
   const databaseFullUri = databaseUri + databaseName
   const collectionNames = JSON.parse(process.env.MONGO_COLLECTION_NAMES)
-  const totalAmountOfEntities = randomizer(64, 512)
+  const totalAmountOfEntities = randomizer(64, 128)
 
   try {
+    const doYouAgree = await yesno({
+      question:
+        'You are about to drop and override all the stored data. Are you sure you want to continue?'
+    })
+
+    if (!doYouAgree) throw new Error('The seeding process has been aborted.')
+
+    logger.info(`Proceeding to seed the database "${databaseName}"...`)
+
     mongoose.connection.on('connected', () =>
-      logger('info', `Successfully connected to database "${databaseName}"`)
+      logger.info(`Successfully connected to database "${databaseName}"`)
     )
 
     mongoose.connection.on('disconnected', () =>
-      logger(
-        'info',
-        `Successfully disconnected from database "${databaseName}"`
-      )
+      logger.info(`Successfully disconnected from database "${databaseName}"`)
     )
 
     const client = await mongoose.connect(databaseFullUri, {
@@ -48,25 +61,27 @@ const seeds = require('./seeds')
           { prefix: collectionName }
         )
 
+      const entities = seeds[collectionName](totalAmountOfEntities)
+
       await model.deleteMany()
 
-      logger(
-        'info',
+      logger.info(
         `Successfully deleted all documents from "${collectionName}" collection`
       )
 
-      await model.insertMany(seeds[collectionName](totalAmountOfEntities))
+      await model.insertMany(entities)
 
-      logger(
-        'info',
+      logger.info(
         `Collection "${collectionName}" successfully seeded with ${totalAmountOfEntities} new randomized entities`
       )
     }
 
     await client.disconnect()
-  } catch (error) {
-    logger('error', error)
 
-    process.exit(-1)
+    logger.info(`The seeding process has been successfuly executed!`)
+  } catch (error) {
+    logger.error(error)
+
+    process.exit(1)
   }
 })()

@@ -4,13 +4,11 @@ module.exports = async (fastify, opts) => {
   fastify.setErrorHandler((error, request, reply) => {
     const date = new Date(Date.now())
 
-    reply.send({
+    return reply.code(reply.statusCode).send({
       api: {
         processed_at: date,
-        description: error.message
+        message: error.message
       }
     })
-
-    return reply
   })
 }

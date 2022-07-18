@@ -11,12 +11,12 @@ module.exports = (fastify, opts) => {
     list: async () => {
       let response = {}
 
-      const entity = await model.find({})
+      const entities = await model.find({})
 
-      if (entity.length >= 1) {
+      if (entities.length >= 1) {
         response = {
           message: 'OK',
-          data: entity
+          data: entities
         }
       } else {
         response = {

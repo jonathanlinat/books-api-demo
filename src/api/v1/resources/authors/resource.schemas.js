@@ -2,51 +2,36 @@
 
 const helpers = require('../../helpers')
 
+const resourceProperties = require('./resource.properties')
+
 module.exports = (opts) => {
   const resourceName = helpers.routePrefixSplitter(opts.prefix)
 
   const swaggerTagName = helpers.swaggerTagNameNormalizer(resourceName)
   const swaggerTags = [swaggerTagName]
 
-  const commonApiProperties = {
-    processed_at: { type: 'string' },
-    description: { type: 'string' }
-  }
-  const commonEntityProperties = {
-    _id: { type: 'string' },
-    created_at: { type: 'string' },
-    updated_at: { type: 'string' }
-  }
-  const specificEntityProperties = {
-    deleted_at: { type: 'string', default: null },
-    published_at: { type: 'string', default: null },
-    firstname: { type: 'string' },
-    lastname: { type: 'string' },
-    birthday: { type: 'string', default: null }
-  }
-  const requiredSpecificEntityProperties = ['firstname', 'lastname']
-
   return {
     list: {
       schema: {
         tags: swaggerTags,
-        summary: 'Get all existing authors',
+        summary: 'Get all existing entities',
         response: {
           200: {
-            description: 'Entities successfully found',
             type: 'object',
+            description: 'Entities successfully found',
             properties: {
               [resourceName]: {
                 type: 'object',
                 properties: {
-                  ...commonApiProperties,
+                  ...resourceProperties().schemas.api,
                   data: {
                     type: 'array',
                     items: {
                       type: 'object',
                       properties: {
-                        ...commonEntityProperties,
-                        ...specificEntityProperties
+                        ...resourceProperties().schemas.database,
+                        ...resourceProperties().schemas.entity.common,
+                        ...resourceProperties().schemas.entity.specific
                       }
                     }
                   }
@@ -55,13 +40,13 @@ module.exports = (opts) => {
             }
           },
           404: {
-            description: 'Entities not found',
             type: 'object',
+            description: 'Entities not found',
             properties: {
               [resourceName]: {
                 type: 'object',
                 properties: {
-                  ...commonApiProperties,
+                  ...resourceProperties().schemas.api,
                   data: {
                     type: 'array'
                   }
@@ -70,13 +55,13 @@ module.exports = (opts) => {
             }
           },
           500: {
-            description: 'Internal Server Error',
             type: 'object',
+            description: 'Internal Server Error',
             properties: {
               [resourceName]: {
                 type: 'object',
                 properties: {
-                  ...commonApiProperties
+                  ...resourceProperties().schemas.api
                 }
               }
             }
@@ -87,7 +72,7 @@ module.exports = (opts) => {
     get: {
       schema: {
         tags: swaggerTags,
-        summary: 'Get a specific author',
+        summary: 'Get a specific entity',
         params: {
           type: 'object',
           properties: {
@@ -96,18 +81,19 @@ module.exports = (opts) => {
         },
         response: {
           200: {
-            description: 'Entity successfully found',
             type: 'object',
+            description: 'Entity successfully found',
             properties: {
               [resourceName]: {
                 type: 'object',
                 properties: {
-                  ...commonApiProperties,
+                  ...resourceProperties().schemas.api,
                   data: {
                     type: 'object',
                     properties: {
-                      ...commonEntityProperties,
-                      ...specificEntityProperties
+                      ...resourceProperties().schemas.database,
+                      ...resourceProperties().schemas.entity.common,
+                      ...resourceProperties().schemas.entity.specific
                     }
                   }
                 }
@@ -115,13 +101,13 @@ module.exports = (opts) => {
             }
           },
           404: {
-            description: 'Entity not found',
             type: 'object',
+            description: 'Entity not found',
             properties: {
               [resourceName]: {
                 type: 'object',
                 properties: {
-                  ...commonApiProperties,
+                  ...resourceProperties().schemas.api,
                   data: {
                     type: 'object'
                   }
@@ -129,14 +115,26 @@ module.exports = (opts) => {
               }
             }
           },
-          500: {
-            description: 'Internal Server Error',
+          422: {
             type: 'object',
+            description: 'Provided ID not valid',
             properties: {
               [resourceName]: {
                 type: 'object',
                 properties: {
-                  ...commonApiProperties
+                  ...resourceProperties().schemas.api
+                }
+              }
+            }
+          },
+          500: {
+            type: 'object',
+            description: 'Internal Server Error',
+            properties: {
+              [resourceName]: {
+                type: 'object',
+                properties: {
+                  ...resourceProperties().schemas.api
                 }
               }
             }
@@ -147,29 +145,30 @@ module.exports = (opts) => {
     create: {
       schema: {
         tags: swaggerTags,
-        summary: 'Create a new author',
+        summary: 'Create a new entity',
         body: {
           type: 'object',
           additionalProperties: false,
           properties: {
-            ...specificEntityProperties
+            ...resourceProperties().schemas.entity.specific
           },
-          required: requiredSpecificEntityProperties
+          required: resourceProperties().schemas.entity.required
         },
         response: {
           201: {
-            description: 'Entity successfully created',
             type: 'object',
+            description: 'Entity successfully created',
             properties: {
               [resourceName]: {
                 type: 'object',
                 properties: {
-                  ...commonApiProperties,
+                  ...resourceProperties().schemas.api,
                   data: {
                     type: 'object',
                     properties: {
-                      ...commonEntityProperties,
-                      ...specificEntityProperties
+                      ...resourceProperties().schemas.database,
+                      ...resourceProperties().schemas.entity.common,
+                      ...resourceProperties().schemas.entity.specific
                     }
                   }
                 }
@@ -177,13 +176,13 @@ module.exports = (opts) => {
             }
           },
           404: {
-            description: 'Entity not found',
             type: 'object',
+            description: 'Entity not found',
             properties: {
               [resourceName]: {
                 type: 'object',
                 properties: {
-                  ...commonApiProperties,
+                  ...resourceProperties().schemas.api,
                   data: {
                     type: 'object'
                   }
@@ -191,14 +190,26 @@ module.exports = (opts) => {
               }
             }
           },
-          500: {
-            description: 'Internal Server Error',
+          422: {
             type: 'object',
+            description: 'Provided ID not valid',
             properties: {
               [resourceName]: {
                 type: 'object',
                 properties: {
-                  ...commonApiProperties
+                  ...resourceProperties().schemas.api
+                }
+              }
+            }
+          },
+          500: {
+            type: 'object',
+            description: 'Internal Server Error',
+            properties: {
+              [resourceName]: {
+                type: 'object',
+                properties: {
+                  ...resourceProperties().schemas.api
                 }
               }
             }
@@ -209,7 +220,7 @@ module.exports = (opts) => {
     update: {
       schema: {
         tags: swaggerTags,
-        summary: 'Update a specific author',
+        summary: 'Update a specific entity',
         params: {
           type: 'object',
           properties: {
@@ -220,23 +231,25 @@ module.exports = (opts) => {
           type: 'object',
           additionalProperties: false,
           properties: {
-            ...specificEntityProperties
-          }
+            ...resourceProperties().schemas.entity.specific
+          },
+          required: resourceProperties().schemas.entity.required
         },
         response: {
           200: {
-            description: 'Entity successfully updated',
             type: 'object',
+            description: 'Entity successfully updated',
             properties: {
               [resourceName]: {
                 type: 'object',
                 properties: {
-                  ...commonApiProperties,
+                  ...resourceProperties().schemas.api,
                   data: {
                     type: 'object',
                     properties: {
-                      ...commonEntityProperties,
-                      ...specificEntityProperties
+                      ...resourceProperties().schemas.database,
+                      ...resourceProperties().schemas.entity.common,
+                      ...resourceProperties().schemas.entity.specific
                     }
                   }
                 }
@@ -244,13 +257,13 @@ module.exports = (opts) => {
             }
           },
           404: {
-            description: 'Entity not found',
             type: 'object',
+            description: 'Entity not found',
             properties: {
               [resourceName]: {
                 type: 'object',
                 properties: {
-                  ...commonApiProperties,
+                  ...resourceProperties().schemas.api,
                   data: {
                     type: 'object'
                   }
@@ -258,14 +271,26 @@ module.exports = (opts) => {
               }
             }
           },
-          500: {
-            description: 'Internal Server Error',
+          422: {
             type: 'object',
+            description: 'Provided ID not valid',
             properties: {
               [resourceName]: {
                 type: 'object',
                 properties: {
-                  ...commonApiProperties
+                  ...resourceProperties().schemas.api
+                }
+              }
+            }
+          },
+          500: {
+            type: 'object',
+            description: 'Internal Server Error',
+            properties: {
+              [resourceName]: {
+                type: 'object',
+                properties: {
+                  ...resourceProperties().schemas.api
                 }
               }
             }
@@ -276,7 +301,7 @@ module.exports = (opts) => {
     delete: {
       schema: {
         tags: swaggerTags,
-        summary: 'Delete a specific author',
+        summary: 'Delete a specific entity',
         params: {
           type: 'object',
           properties: {
@@ -285,18 +310,19 @@ module.exports = (opts) => {
         },
         response: {
           200: {
-            description: 'Entity successfully deleted',
             type: 'object',
+            description: 'Entity successfully deleted',
             properties: {
               [resourceName]: {
                 type: 'object',
                 properties: {
-                  ...commonApiProperties,
+                  ...resourceProperties().schemas.api,
                   data: {
                     type: 'object',
                     properties: {
-                      ...commonEntityProperties,
-                      ...specificEntityProperties
+                      ...resourceProperties().schemas.database,
+                      ...resourceProperties().schemas.entity.common,
+                      ...resourceProperties().schemas.entity.specific
                     }
                   }
                 }
@@ -304,13 +330,13 @@ module.exports = (opts) => {
             }
           },
           404: {
-            description: 'Entity not found',
             type: 'object',
+            description: 'Entity not found',
             properties: {
               [resourceName]: {
                 type: 'object',
                 properties: {
-                  ...commonApiProperties,
+                  ...resourceProperties().schemas.api,
                   data: {
                     type: 'object'
                   }
@@ -318,14 +344,26 @@ module.exports = (opts) => {
               }
             }
           },
-          500: {
-            description: 'Internal Server Error',
+          422: {
             type: 'object',
+            description: 'Provided ID not valid',
             properties: {
               [resourceName]: {
                 type: 'object',
                 properties: {
-                  ...commonApiProperties
+                  ...resourceProperties().schemas.api
+                }
+              }
+            }
+          },
+          500: {
+            type: 'object',
+            description: 'Internal Server Error',
+            properties: {
+              [resourceName]: {
+                type: 'object',
+                properties: {
+                  ...resourceProperties().schemas.api
                 }
               }
             }

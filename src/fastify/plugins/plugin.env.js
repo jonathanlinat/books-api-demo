@@ -11,8 +11,6 @@ const plugin = async (fastify, opts) => {
   }
 }
 
-module.exports = fp(async (fastify, opts, next) => {
+module.exports = fp(async (fastify, opts) => {
   await fastify.register(plugin)
-
-  next()
 })

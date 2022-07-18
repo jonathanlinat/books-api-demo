@@ -4,34 +4,29 @@ const fp = require('fastify-plugin')
 const mongoose = require('mongoose')
 
 const plugin = fp(async (fastify, opts) => {
-  try {
-    mongoose.connection.on('connected', () =>
-      fastify.log.info(
-        { actor: 'MongoDB' },
-        `Successfully connected to database "${process.env.MONGO_DATABASE_NAME}"`
-      )
+  mongoose.connection.on('connected', () =>
+    fastify.log.info(
+      { actor: 'MongoDB' },
+      `Successfully connected to database "${process.env.MONGO_DATABASE_NAME}"`
     )
-    mongoose.connection.on('disconnected', () =>
-      fastify.log.info(
-        { actor: 'MongoDB' },
-        `Successfully disconnected from database "${process.env.MONGO_DATABASE_NAME}"`
-      )
+  )
+  mongoose.connection.on('disconnected', () =>
+    fastify.log.info(
+      { actor: 'MongoDB' },
+      `Successfully disconnected from database "${process.env.MONGO_DATABASE_NAME}"`
     )
+  )
 
-    await mongoose.connect(opts.url, opts.settings)
+  mongoose.connect(opts.url, opts.settings)
 
-    fastify.addHook('onClose', (instance, done) => {
-      instance.mongoose.connection.on('close', () => done())
-      instance.mongoose.connection.close()
-    })
+  fastify.addHook('onClose', () => {
+    fastify.mongoose.connection.close()
+  })
 
-    fastify.decorate('mongoose', mongoose)
-  } catch (error) {
-    fastify.log.error(error)
-  }
+  fastify.decorate('mongoose', mongoose)
 })
 
-module.exports = fp(async (fastify, opts, next) => {
+module.exports = fp(async (fastify, opts) => {
   const databaseFullUrl =
     process.env.MONGO_URL + process.env.MONGO_DATABASE_NAME
 
@@ -45,6 +40,4 @@ module.exports = fp(async (fastify, opts, next) => {
       }
     }
   })
-
-  next()
 })
