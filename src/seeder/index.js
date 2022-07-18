@@ -46,7 +46,7 @@ const seeds = require('./seeds')
       logger.info(`Successfully disconnected from database "${databaseName}"`)
     )
 
-    const client = await mongoose.connect(databaseFullUri, {
+    const client = mongoose.connect(databaseFullUri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       config: {
