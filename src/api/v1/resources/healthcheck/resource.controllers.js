@@ -13,7 +13,7 @@ module.exports = (fastify, opts) => {
         return reply.code(200).send({
           [resourceName]: {
             ...resourceProperties().controllers.api(
-              'Great! API is reachable 😎'
+              'Yay! The API is reachable 😎'
             )
           }
         })

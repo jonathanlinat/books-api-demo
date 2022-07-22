@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  mongo:
+    restart: "always"
+    image: "mongo"
+    ports:
+      - "27017:27017"
+  api:
+    build: "."
+    restart: "always"
+    ports:
+      - "3000:3000"
+    environment: 
+      MONGO_URL: "mongodb://mongo:27017/"
+      MONGO_DATABASE_NAME: "etfma-api"
+      MONGO_COLLECTION_NAMES: "['authors']"
+      API_VERSION: "v1"
+    volumes:
+      - ".:/api"
+      - "nodemodules:/api/node_modules"
+    links:
+      - "mongo"
+    depends_on:
+      - "mongo"
+volumes:
+  nodemodules: {}

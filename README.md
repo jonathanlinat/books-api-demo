@@ -19,12 +19,19 @@ A simple Fan Missions catalog API built over [Fastify](https://www.fastify.io/) 
 * [X] Document the API
   + [X] Create a `README.md` file
   + [X] Add Swagger
+* [ ] Add the resources
+  + [ ] Authors
+  + [ ] Fan Missions
+* [ ] Convert current code to TypeScript
+* [ ] Add a database seeder
+  + [x] Authors
+  + [ ] Fan Missions
 * [ ] Versionize the API
   + [X] URI
   + [ ] Custom header
-* [ ] Create custom error response handlers (`setErrorHandler` & `setNotFound`)
-* [ ] Export all shared properties to a unique file
-* [ ] Dockerize the application
+* [X] Create custom error response handlers (`setErrorHandler` & `setNotFound`)
+* [X] Export all shared properties to a unique file
+* [X] Dockerize the application
 * [ ] Build a CI/CD pipeline
 * [ ] Implement authenticated routes
 * [ ] Employ concurrent calls
@@ -32,7 +39,6 @@ A simple Fan Missions catalog API built over [Fastify](https://www.fastify.io/) 
 * [ ] Add replies compression
 * [ ] Implement pagination
 * [ ] Generate and send logs
-* [ ] Add a database seeder
 * [ ] Create a database migration process
 * [ ] Test the API
   + [ ] Create unit tests
@@ -66,13 +72,19 @@ Two commands are available. Each of them depends on the environment.
 #### Local
 
 ```bash
-pnpm dev
+pnpm start:dev
 ```
 
 #### Production
 
 ```bash
-pnpm start
+pnpm start:prod
+```
+
+#### Production (Docker)
+
+```bash
+pnpm start:docker
 ```
 
 ### Seed the database

@@ -5,26 +5,25 @@
   "version": "1.0.0",
   "license": "UNLICENSED",
   "scripts": {
-    "dev": "fastify start -w -l info -P src/",
     "lint": "eslint src/ --fix",
     "seed": "node src/seeder/",
-    "start": "fastify start -l info src/",
-    "test": "tap \"src/**/*.test.js\""
+    "start:docker": "docker compose up --build",
+    "start:dev": "pnpm subscript:start -l debug -w -P",
+    "start:prod": "pnpm subscript:start -l info",
+    "test": "tap \"src/**/*.test.js\"",
+    "subscript:start": "fastify start src/"
   },
   "dependencies": {
     "@fastify/autoload": "5.1.0",
     "@fastify/cors": "8.0.0",
     "@fastify/helmet": "9.1.0",
-    "@fastify/rate-limit": "7.2.0",
+    "@fastify/rate-limit": "7.3.0",
     "@fastify/static": "6.4.0",
     "@fastify/swagger": "7.4.1",
-    "fastify": "4.2.1",
+    "fastify": "4.3.0",
     "fastify-cli": "4.3.0",
     "fastify-plugin": "4.0.0",
-    "mongoose": "6.4.5",
-    "pino": "^8.2.0",
-    "pino-pretty": "^8.1.0",
-    "yesno": "^0.4.0"
+    "mongoose": "6.4.6"
   },
   "devDependencies": {
     "@commitlint/cli": "17.0.3",
@@ -40,9 +39,12 @@
     "eslint-plugin-prettier": "4.2.1",
     "eslint-plugin-promise": "6.0.0",
     "lint-staged": "13.0.3",
+    "pino": "^8.3.0",
+    "pino-pretty": "^8.1.0",
     "prettier": "2.7.1",
     "prettier-config-standard": "5.0.0",
     "simple-git-hooks": "2.8.0",
-    "tap": "16.3.0"
+    "tap": "16.3.0",
+    "yesno": "^0.4.0"
   }
 }
